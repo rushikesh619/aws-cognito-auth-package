@@ -1,0 +1,9 @@
+{
+  "name": "mysql-layer",
+  "version": "1.0.0",
+  "description": "",
+  "dependencies": {
+      "mysql2": "^2.3.2",
+      "sequelize": "^6.21.3"
+  }
+}

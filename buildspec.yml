@@ -1,0 +1,28 @@
+# Do not change version. This is the version of aws buildspec, not the version of your buldspec file.
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      nodejs: 14
+    commands:
+      - echo Installing Mocha...
+      - npm install -g mocha
+  pre_build:
+    commands:
+      - echo Installing source NPM dependencies...
+      - rm -rf .git/
+      - cd src/layers/common-layer/nodejs/common-layer/
+      - npm install
+      - npm install unit.js
+      - npm prune --production
+      - rm -rf package-lock.json
+      - cd ../../../../..
+  build:
+    commands:
+      - echo Build started on `date`
+      - echo Compiling the Node.js code
+      - mocha test.js
+  post_build:
+    commands:
+      - echo Build completed on `date`
